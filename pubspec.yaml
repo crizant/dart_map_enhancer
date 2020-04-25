@@ -1,6 +1,7 @@
 name: map_enhancer
 description: A plugin which extends Dart's native `Map` type with a couple of handy methods.
-homepage:
+version: 0.1.0
+homepage: https://github.com/crizant/dart_map_enhancer
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
