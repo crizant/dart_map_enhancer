@@ -1,0 +1,12 @@
+name: map_enhancer
+description: A plugin which extends Dart's native `Map` type with a couple of handy methods.
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
