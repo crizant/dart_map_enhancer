@@ -28,19 +28,19 @@ final Map peter = {
 
 ```dart
 print(
-  peter.get(['name', 'firstName']),
+  peter.getIn(['name', 'firstName']),
 );
 // Output: Peter
 
 // or if you prefer the json "dot notation":
 print(
-  peter.get('name.firstName'.split('.')),
+  peter.getIn('name.firstName'.split('.')),
 );
 // Output: Peter
 
 // call with default value:
 print(
-  peter.get(
+  peter.getIn(
     'name.nickName'.split('.'),
     defaultValue: 'Pete',
   ),
@@ -51,7 +51,7 @@ print(
 ### Set a nested value:
 
 ```dart
-peter.set(['ability'], 'Empathic mimicry');
+peter.setIn(['ability'], 'Empathic mimicry');
 print(peter['ability']);
 // Output: Empathic mimicry
 ```
@@ -59,7 +59,7 @@ print(peter['ability']);
 ### Remove a nested key:
 
 ```dart
-peter.unset(['name', 'lastName']);
+peter.unsetIn(['name', 'lastName']);
 print(peter['name']['lastName']);
 // Output: null
 ```

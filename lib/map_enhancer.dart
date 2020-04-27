@@ -7,7 +7,7 @@ extension MapEnhancer on Map {
   }
 
   /// Gets a nested value in a `Map`, optionally provide a `defaultValue`.
-  dynamic get(List path, {dynamic defaultValue}) {
+  dynamic getIn(List path, {dynamic defaultValue}) {
     assert(this != null);
     assert(path.isNotEmpty);
 
@@ -32,7 +32,7 @@ extension MapEnhancer on Map {
   }
 
   /// Sets a nested value in a `Map` with the provided `value`.
-  void set(List path, dynamic value) {
+  void setIn(List path, dynamic value) {
     assert(this != null);
     assert(path.isNotEmpty);
 
@@ -51,12 +51,12 @@ extension MapEnhancer on Map {
   }
 
   /// Removes nested key and its associated value, if present, from the `Map`.
-  void unset(List path) {
+  void unsetIn(List path) {
     assert(this != null);
     assert(path.isNotEmpty);
 
     dynamic pointer = path.length > 1
-        ? this.get(
+        ? this.getIn(
             path.sublist(0, path.length - 1),
           )
         : this;
