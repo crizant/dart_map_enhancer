@@ -14,7 +14,7 @@ void main() {
   );
   // Output: Peter
 
-  // or if you prefer the json "dot notation":
+  // or if you prefer the JSON "dot notation":
   print(
     peter.getIn('name.firstName'.split('.')),
   );
@@ -36,4 +36,7 @@ void main() {
   peter.unsetIn(['name', 'lastName']);
   print(peter['name']['lastName']);
   // Output: null
+
+  print(peter.hasIn(['name', 'nickname']));
+  // Output: false
 }

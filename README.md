@@ -32,7 +32,7 @@ print(
 );
 // Output: Peter
 
-// or if you prefer the json "dot notation":
+// or if you prefer the JSON "dot notation":
 print(
   peter.getIn('name.firstName'.split('.')),
 );
@@ -62,4 +62,11 @@ print(peter['ability']);
 peter.unsetIn(['name', 'lastName']);
 print(peter['name']['lastName']);
 // Output: null
+```
+
+### Check if a nested key is present:
+
+```dart
+print(peter.hasIn(['name', 'nickname']));
+// Output: false
 ```

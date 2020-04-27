@@ -6,7 +6,8 @@ extension MapEnhancer on Map {
         '${value.runtimeType}'.startsWith('_InternalLinkedHashMap');
   }
 
-  /// Gets a nested value in a `Map`, optionally provide a `defaultValue`.
+  /// Gets a nested value in `path` of the `Map`,
+  /// if not present, returns null, or the optionally provided `defaultValue`.
   dynamic getIn(List path, {dynamic defaultValue}) {
     assert(this != null);
     assert(path.isNotEmpty);
@@ -31,7 +32,7 @@ extension MapEnhancer on Map {
     return returnValue;
   }
 
-  /// Sets a nested value in a `Map` with the provided `value`.
+  /// Sets a nested value in `path` of the `Map` with the provided `value`.
   void setIn(List path, dynamic value) {
     assert(this != null);
     assert(path.isNotEmpty);
@@ -50,7 +51,8 @@ extension MapEnhancer on Map {
     }
   }
 
-  /// Removes nested key and its associated value, if present, from the `Map`.
+  /// Removes nested key in provided `path` and its associated value,
+  /// if present, from the `Map`.
   void unsetIn(List path) {
     assert(this != null);
     assert(path.isNotEmpty);
@@ -63,5 +65,21 @@ extension MapEnhancer on Map {
     if (_isMap(pointer)) {
       pointer.remove(path.last);
     }
+  }
+
+  /// Returns if a key is present in `path` of the `Map`
+  bool hasIn(List path) {
+    assert(this != null);
+    assert(path.isNotEmpty);
+
+    dynamic pointer = path.length > 1
+        ? this.getIn(
+            path.sublist(0, path.length - 1),
+          )
+        : this;
+    if (_isMap(pointer)) {
+      return pointer.containsKey(path.last);
+    }
+    return false;
   }
 }

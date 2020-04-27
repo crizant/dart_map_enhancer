@@ -39,4 +39,16 @@ void main() {
     m.unsetIn('b.c'.split('.'));
     expect((m['b'] as Map).containsKey('c'), false);
   });
+
+  test('Map.hasIn() method', () {
+    final Map m = {
+      'a': 1,
+      'b': {
+        'c': 2,
+      },
+    };
+    expect(m.hasIn('a'.split('.')), true);
+    expect(m.hasIn('b.c'.split('.')), true);
+    expect(m.hasIn('b.c.d'.split('.')), false);
+  });
 }
