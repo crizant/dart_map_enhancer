@@ -1,11 +1,6 @@
 library map_enhancer;
 
 extension MapEnhancer on Map {
-  bool _isMap(dynamic value) {
-    return value.runtimeType == Map ||
-        '${value.runtimeType}'.startsWith('_InternalLinkedHashMap');
-  }
-
   /// Gets a nested value in `path` of the `Map`,
   /// if not present, returns null, or the optionally provided `defaultValue`.
   dynamic getIn(List path, {dynamic defaultValue}) {
@@ -23,7 +18,7 @@ extension MapEnhancer on Map {
         returnValue = pointer[node];
         break;
       } else {
-        if (!_isMap(pointer[node])) {
+        if (pointer[node] is! Map) {
           break;
         }
         pointer = pointer[node];
@@ -43,7 +38,7 @@ extension MapEnhancer on Map {
       if (i == path.length - 1) {
         pointer[node] = value;
       } else {
-        if (!_isMap(pointer[node])) {
+        if (pointer[node] is! Map) {
           pointer[node] = {};
         }
         pointer = pointer[node];
@@ -62,7 +57,7 @@ extension MapEnhancer on Map {
             path.sublist(0, path.length - 1),
           )
         : this;
-    if (_isMap(pointer)) {
+    if (pointer is Map) {
       pointer.remove(path.last);
     }
   }
@@ -77,7 +72,7 @@ extension MapEnhancer on Map {
             path.sublist(0, path.length - 1),
           )
         : this;
-    if (_isMap(pointer)) {
+    if (pointer is Map) {
       return pointer.containsKey(path.last);
     }
     return false;
