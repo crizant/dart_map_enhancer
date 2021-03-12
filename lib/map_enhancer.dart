@@ -4,14 +4,13 @@ extension MapEnhancer on Map {
   /// Gets a nested value in `path` of the `Map`,
   /// if not present, returns null, or the optionally provided `defaultValue`.
   dynamic getIn(List path, {dynamic defaultValue}) {
-    assert(this != null);
     assert(path.isNotEmpty);
 
-    Map pointer = this;
+    Map? pointer = this;
     dynamic returnValue = defaultValue;
     for (var i = 0; i < path.length; i++) {
       final node = path[i];
-      if (!pointer.containsKey(node)) {
+      if (!pointer!.containsKey(node)) {
         break;
       }
       if (i == path.length - 1) {
@@ -29,16 +28,15 @@ extension MapEnhancer on Map {
 
   /// Sets a nested value in `path` of the `Map` with the provided `value`.
   void setIn(List path, dynamic value) {
-    assert(this != null);
     assert(path.isNotEmpty);
 
-    Map pointer = this;
+    Map? pointer = this;
     for (var i = 0; i < path.length; i++) {
       final node = path[i];
       if (i == path.length - 1) {
-        pointer[node] = value;
+        pointer![node] = value;
       } else {
-        if (pointer[node] is! Map) {
+        if (pointer![node] is! Map) {
           pointer[node] = {};
         }
         pointer = pointer[node];
@@ -49,7 +47,6 @@ extension MapEnhancer on Map {
   /// Removes nested key in provided `path` and its associated value,
   /// if present, from the `Map`.
   void unsetIn(List path) {
-    assert(this != null);
     assert(path.isNotEmpty);
 
     dynamic pointer = path.length > 1
@@ -64,7 +61,6 @@ extension MapEnhancer on Map {
 
   /// Returns if a key is present in `path` of the `Map`
   bool hasIn(List path) {
-    assert(this != null);
     assert(path.isNotEmpty);
 
     dynamic pointer = path.length > 1
